@@ -95,12 +95,15 @@ header p {
   max-width: 100%;
   border-radius: 12px;
   border: 3px solid #b8860b;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 
-.art-piece img:hover {
-  transform: scale(1.04);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+.art-piece img:hover,
+.image-grid img:hover,
+.dual-images img:hover {
+  transform: scale(1.015);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.14);
 }
 
 /* SIDE BY SIDE */
@@ -133,6 +136,7 @@ header p {
   object-fit: cover;
   border-radius: 8px;
   border: 2px solid #b8860b;
+  cursor: pointer;
 }
 
 /* 3D MODEL */
@@ -297,6 +301,73 @@ footer {
   box-shadow: 0 8px 16px rgba(0,0,0,0.14);
 }
 
+/* FULLSCREEN IMAGE VIEWER */
+.viewer-open {
+  overflow: hidden;
+}
+
+#viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+#viewer.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#viewer-img {
+  max-width: min(92vw, 1200px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 3px solid #f0d37a;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+  transform: scale(0.92);
+  transition: transform 0.28s ease;
+  cursor: default;
+  background: rgba(255,248,220,0.08);
+}
+
+#viewer.show #viewer-img {
+  transform: scale(1);
+}
+
+#viewer-close {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.16);
+  color: white;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#viewer-close:hover {
+  background: rgba(255,255,255,0.28);
+  transform: scale(1.06);
+}
+
 /* MOBILE */
 @media (max-width: 900px) {
   .art-piece,
@@ -355,5 +426,14 @@ footer {
   .back-btn {
     width: 100%;
     text-align: center;
+  }
+
+  #viewer {
+    padding: 20px;
+  }
+
+  #viewer-close {
+    top: 14px;
+    right: 16px;
   }
 }
