@@ -26,7 +26,7 @@
 
   <section class="gallery">
 
-    <!-- 3D MODEL -->
+    <!-- 3D MODEL 1 -->
     <div class="art-piece vertical-layout">
       <div class="model-wrap">
         <model-viewer
@@ -42,45 +42,62 @@
       </div>
     </div>
 
-    <!-- ART 1 -->
-    <div class="art-piece">
-      <div class="dual-images">
-        <img src="images/art1.gif" onclick="openViewer(this.src)">
-        <img src="images/art11.gif" onclick="openViewer(this.src)">
+    <!-- 3D MODEL 2 -->
+    <div class="art-piece vertical-layout">
+      <div class="model-wrap">
+        <model-viewer
+          src="images/Berry.glb"
+          camera-controls
+          auto-rotate>
+        </model-viewer>
       </div>
 
+      <div class="description centered">
+        <h2>3D Model</h2>
+        <p>Click and drag to rotate</p>
+      </div>
+    </div>
+
+    <!-- ART 1 -->
+    <div class="art-piece">
+      <img src="images/bookshelf1.jpg" onclick="openViewer(this.src)" alt="Tavern Bookshelf">
       <div class="description">
-        <h2>Artwork Title</h2>
-        <p>Two variations of the same concept.</p>
+        <h2>Tavern Bookshelf</h2>
+        <p></p>
       </div>
     </div>
 
     <!-- ART 2 -->
     <div class="art-piece">
-      <div class="image-grid">
-        <img src="images/art2.jpg" onclick="openViewer(this.src)">
-        <img src="images/art22.jpg" onclick="openViewer(this.src)">
-        <img src="images/art222.jpg" onclick="openViewer(this.src)">
-        <img src="images/art2222.jpg" onclick="openViewer(this.src)">
+      <div class="dual-images">
+        <img src="images/art1.gif" onclick="openViewer(this.src)" alt="Demon female variation 1">
+        <img src="images/art11.gif" onclick="openViewer(this.src)" alt="Demon female variation 2">
       </div>
 
       <div class="description">
-        <h2>Simpsons recreation</h2>
-        <p>Molded and Textured by</p>
+        <h2>Demon female</h2>
+        <p>shapeshifter</p>
       </div>
     </div>
 
     <!-- ART 3 -->
     <div class="art-piece">
-      <img src="images/bookshelf1.jpg" onclick="openViewer(this.src)">
+      <div class="image-grid">
+        <img src="images/art2.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 1">
+        <img src="images/art22.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 2">
+        <img src="images/art222.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 3">
+        <img src="images/art2222.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 4">
+      </div>
+
       <div class="description">
-        <h2>Tavern Bookshelf</h2>
+        <h2>Simpsons recreation</h2>
+        <p>Molded and Textured by B</p>
       </div>
     </div>
 
     <!-- ART 4 -->
     <div class="art-piece">
-      <img src="images/blueb.jpg" onclick="openViewer(this.src)">
+      <img src="images/blueb.jpg" onclick="openViewer(this.src)" alt="Artwork 4">
       <div class="description">
         <h2>Artwork Title 4</h2>
         <p>Description here.</p>
@@ -89,7 +106,7 @@
 
     <!-- ART 5 -->
     <div class="art-piece">
-      <img src="images/meat.jpg" onclick="openViewer(this.src)">
+      <img src="images/meat.jpg" onclick="openViewer(this.src)" alt="Artwork 5">
       <div class="description">
         <h2>Artwork Title 5</h2>
         <p>Description here.</p>
@@ -99,30 +116,49 @@
     <!-- ART 6 -->
     <div class="art-piece">
       <div class="image-grid">
-        <img src="images/group1.png" onclick="openViewer(this.src)">
-        <img src="images/group11.png" onclick="openViewer(this.src)">
-        <img src="images/group1111.png" onclick="openViewer(this.src)">
-        <img src="images/group1111111.png" onclick="openViewer(this.src)">
+        <img src="images/group1.png" onclick="openViewer(this.src)" alt="Artwork 6 view 1">
+        <img src="images/group11.png" onclick="openViewer(this.src)" alt="Artwork 6 view 2">
+        <img src="images/group1111.png" onclick="openViewer(this.src)" alt="Artwork 6 view 3">
+        <img src="images/group1111111.png" onclick="openViewer(this.src)" alt="Artwork 6 view 4">
       </div>
 
       <div class="description">
-        <h2>Artwork Title 6</h2>
-        <p>Multiple angles and details of this piece.</p>
+        <h2>Misc.</h2>
+        <p>\</p>
       </div>
     </div>
 
     <!-- ART 7 -->
     <div class="art-piece">
       <div class="image-grid">
-        <img src="images/group11111.png" onclick="openViewer(this.src)">
-        <img src="images/group11111111.png" onclick="openViewer(this.src)">
-        <img src="images/group111111.png" onclick="openViewer(this.src)">
-        <img src="images/group111.png" onclick="openViewer(this.src)">
+        <img src="images/group11111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 1">
+        <img src="images/group11111111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 2">
+        <img src="images/group111111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 3">
+        <img src="images/group111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 4">
       </div>
 
       <div class="description">
-        <h2>Artwork Title 7</h2>
-        <p>Different perspectives of the same model.</p>
+        <h2>misc.</h2>
+        <p></p>
+      </div>
+    </div>
+
+    <!-- ART 8 -->
+    <div class="art-piece">
+      <div class="art-eight-layout">
+        <div class="art-eight-main">
+          <img src="images/bee1.png" onclick="openViewer(this.src)" alt="Buzz main view">
+        </div>
+
+        <div class="art-eight-side">
+          <img src="images/bee11.png" onclick="openViewer(this.src)" alt="Buzz side view 1">
+          <img src="images/bee111.png" onclick="openViewer(this.src)" alt="Buzz side view 2">
+        </div>
+      </div>
+
+      <div class="description">
+        <h2>buzz..!</h2>
+        <p>Bee Hexes</p>
       </div>
     </div>
 
