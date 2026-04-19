@@ -26,139 +26,117 @@
 
   <section class="gallery">
 
-    <!-- 3D MODEL 1 -->
-    <div class="art-piece vertical-layout">
-      <div class="model-wrap">
-        <model-viewer
-          src="images/Steak.glb"
-          camera-controls
-          auto-rotate>
-        </model-viewer>
-      </div>
-
-      <div class="description centered">
-        <h2>3D Model</h2>
-        <p>Click and drag to rotate</p>
-      </div>
-    </div>
-
-    <!-- 3D MODEL 2 -->
-    <div class="art-piece vertical-layout">
-      <div class="model-wrap">
-        <model-viewer
-          src="images/Berry.glb"
-          camera-controls
-          auto-rotate>
-        </model-viewer>
-      </div>
-
-      <div class="description centered">
-        <h2>3D Model</h2>
-        <p>Click and drag to rotate</p>
-      </div>
-    </div>
-
-    <!-- ART 1 -->
+    <!-- 1. BLUEBERRY IMAGE -->
     <div class="art-piece">
-      <img src="images/bookshelf1.jpg" onclick="openViewer(this.src)" alt="Tavern Bookshelf">
-      <div class="description">
-        <h2>Tavern Bookshelf</h2>
-        <p></p>
-      </div>
-    </div>
-
-    <!-- ART 2 -->
-    <div class="art-piece">
-      <div class="dual-images">
-        <img src="images/art1.gif" onclick="openViewer(this.src)" alt="Demon female variation 1">
-        <img src="images/art11.gif" onclick="openViewer(this.src)" alt="Demon female variation 2">
-      </div>
-
-      <div class="description">
-        <h2>Demon female</h2>
-        <p>shapeshifter</p>
-      </div>
-    </div>
-
-    <!-- ART 3 -->
-    <div class="art-piece">
-      <div class="image-grid">
-        <img src="images/Art2.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 1">
-        <img src="images/Art22.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 2">
-        <img src="images/art222.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 3">
-        <img src="images/art2222.jpg" onclick="openViewer(this.src)" alt="Simpsons recreation view 4">
-      </div>
-
-      <div class="description">
-        <h2>Simpsons recreation</h2>
-        <p>Molded and Textured by B</p>
-      </div>
-    </div>
-
-    <!-- ART 4 -->
-    <div class="art-piece">
-      <img src="images/blueb.jpg" onclick="openViewer(this.src)" alt="Artwork 4">
+      <img src="images/blueb.jpg" onclick="openViewer(this.src)">
       <div class="description">
         <h2>Blueberrys</h2>
-        <p></p>
       </div>
     </div>
 
-    <!-- ART 5 -->
+    <!-- 2. BLUEBERRY GLB -->
+    <div class="art-piece vertical-layout">
+      <div class="model-wrap">
+        <model-viewer src="images/Berry.glb" camera-controls auto-rotate></model-viewer>
+      </div>
+      <div class="description centered">
+        <h2>Blueberry Model</h2>
+      </div>
+    </div>
+
+    <!-- 3. TAVERN -->
     <div class="art-piece">
-      <img src="images/meat.jpg" onclick="openViewer(this.src)" alt="Artwork 5">
+      <img src="images/bookshelf1.jpg" onclick="openViewer(this.src)">
       <div class="description">
-        <h2>Butcher table</h2>
-        <p>I put a few hidden items if you can find them..</p>
+        <h2>Tavern Bookshelf</h2>
       </div>
     </div>
 
-    <!-- ART 6 -->
-    <div class="art-piece">
-      <div class="image-grid">
-        <img src="images/group1.png" onclick="openViewer(this.src)" alt="Artwork 6 view 1">
-        <img src="images/group11.png" onclick="openViewer(this.src)" alt="Artwork 6 view 2">
-        <img src="images/group1111.png" onclick="openViewer(this.src)" alt="Artwork 6 view 3">
-        <img src="images/group1111111.png" onclick="openViewer(this.src)" alt="Artwork 6 view 4">
-      </div>
-
-      <div class="description">
-        <h2>Misc.</h2>
-        <p></p>
-      </div>
-    </div>
-
-    <!-- ART 7 -->
-    <div class="art-piece">
-      <div class="image-grid">
-        <img src="images/group11111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 1">
-        <img src="images/group11111111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 2">
-        <img src="images/group111111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 3">
-        <img src="images/group111.png" onclick="openViewer(this.src)" alt="Artwork 7 view 4">
-      </div>
-
-      <div class="description">
-        <h2>misc.</h2>
-        <p></p>
-      </div>
-    </div>
-
-    <!-- ART 8 -->
+    <!-- 4. BEES -->
     <div class="art-piece">
       <div class="art-eight-layout">
         <div class="art-eight-main">
-          <img src="images/bee1.png" onclick="openViewer(this.src)" alt="Buzz main view">
+          <img src="images/bee1.png" onclick="openViewer(this.src)">
         </div>
-
         <div class="art-eight-side">
-          <img src="images/bee11.png" onclick="openViewer(this.src)" alt="Buzz side view 1">
-          <img src="images/b111.png" onclick="openViewer(this.src)" alt="Buzz side view 2">
+          <img src="images/bee11.png" onclick="openViewer(this.src)">
+          <img src="images/b111.png" onclick="openViewer(this.src)">
         </div>
       </div>
-
       <div class="description">
         <h2>buzz..!</h2>
         <p>Bee Hexes</p>
+      </div>
+    </div>
+
+    <!-- 5. SIMPSONS -->
+    <div class="art-piece">
+      <div class="image-grid">
+        <img src="images/Art2.jpg" onclick="openViewer(this.src)">
+        <img src="images/Art22.jpg" onclick="openViewer(this.src)">
+        <img src="images/art222.jpg" onclick="openViewer(this.src)">
+        <img src="images/art2222.jpg" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Simpsons recreation</h2>
+      </div>
+    </div>
+
+    <!-- 6. PIZZA GLB -->
+    <div class="art-piece vertical-layout">
+      <div class="model-wrap">
+        <model-viewer src="images/Pizza.glb" camera-controls auto-rotate></model-viewer>
+      </div>
+      <div class="description centered">
+        <h2>Pizza Model</h2>
+      </div>
+    </div>
+
+    <!-- 7. STEAK GLB -->
+    <div class="art-piece vertical-layout">
+      <div class="model-wrap">
+        <model-viewer src="images/Steak.glb" camera-controls auto-rotate></model-viewer>
+      </div>
+      <div class="description centered">
+        <h2>Steak Model</h2>
+      </div>
+    </div>
+
+    <!-- 8. MISC -->
+    <div class="art-piece">
+      <div class="image-grid">
+        <img src="images/group1.png" onclick="openViewer(this.src)">
+        <img src="images/group11.png" onclick="openViewer(this.src)">
+        <img src="images/group1111.png" onclick="openViewer(this.src)">
+        <img src="images/group1111111.png" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Misc.</h2>
+      </div>
+    </div>
+
+    <!-- 9. MISC 2 -->
+    <div class="art-piece">
+      <div class="image-grid">
+        <img src="images/group11111.png" onclick="openViewer(this.src)">
+        <img src="images/group11111111.png" onclick="openViewer(this.src)">
+        <img src="images/group111111.png" onclick="openViewer(this.src)">
+        <img src="images/group111.png" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>misc.</h2>
+      </div>
+    </div>
+
+    <!-- 10. DEMON FEMALE -->
+    <div class="art-piece">
+      <div class="dual-images">
+        <img src="images/art1.gif" onclick="openViewer(this.src)">
+        <img src="images/art11.gif" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Demon female</h2>
+        <p>shapeshifter</p>
       </div>
     </div>
 
@@ -171,28 +149,22 @@
 
   <!-- FULLSCREEN VIEWER -->
   <div id="viewer" onclick="closeViewer(event)">
-    <button id="viewer-close" aria-label="Close viewer">&times;</button>
-    <img id="viewer-img" alt="Fullscreen artwork">
+    <button id="viewer-close">&times;</button>
+    <img id="viewer-img">
   </div>
 
   <script>
     function openViewer(src) {
       const viewer = document.getElementById("viewer");
       const img = document.getElementById("viewer-img");
-
       img.src = src;
       viewer.classList.add("show");
       document.body.classList.add("viewer-open");
     }
 
-    function closeViewer(event) {
-      const viewer = document.getElementById("viewer");
-
-      if (
-        event.target.id === "viewer" ||
-        event.target.id === "viewer-close"
-      ) {
-        viewer.classList.remove("show");
+    function closeViewer(e) {
+      if (e.target.id === "viewer" || e.target.id === "viewer-close") {
+        document.getElementById("viewer").classList.remove("show");
         document.body.classList.remove("viewer-open");
       }
     }
