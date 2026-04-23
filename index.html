@@ -8,6 +8,180 @@
 
   <!-- GLB Viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    /* ── Gallery Lightbox ── */
+    #gallery-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(6px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #gallery-overlay.show { display: flex; }
+
+    #gallery-header {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      color: #fff;
+    }
+    #gallery-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    #gallery-close {
+      background: none;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      line-height: 1;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    #gallery-close:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+    #gallery-main {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 1000px;
+      padding: 0 20px;
+    }
+    #gallery-main img {
+      max-height: 55vh;
+      max-width: calc(100% - 100px);
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+    .gallery-arrow {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 1.6rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .gallery-arrow:hover { background: rgba(255,255,255,0.25); }
+
+    #gallery-counter {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    #gallery-thumbs {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 0 20px;
+      overflow-x: auto;
+      max-width: 1000px;
+      width: 100%;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.3) transparent;
+    }
+    #gallery-thumbs img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 0.5;
+      border: 2px solid transparent;
+      flex-shrink: 0;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+    #gallery-thumbs img.active,
+    #gallery-thumbs img:hover { opacity: 1; border-color: #fff; }
+
+    /* ── Clickable gallery card overlay ── */
+    .misc-card {
+      cursor: pointer;
+      position: relative;
+    }
+    .misc-card::after {
+      content: "🖼 View Gallery";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      transition: opacity 0.25s;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .misc-card:hover::after { opacity: 1; }
+    .misc-card .image-grid { pointer-events: none; }
+
+    /* ── Side-by-side image layout ── */
+    .side-by-side {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+    .side-by-side img {
+      flex: 1;
+      min-width: 0;
+      width: 50%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* ── Rich description: header + subtext ── */
+    .description h2 {
+      margin: 0 0 6px 0;
+      font-size: 1.15rem;
+    }
+    .description p.subdesc {
+      margin: 0;
+      font-size: 0.85rem;
+      opacity: 0.75;
+      line-height: 1.5;
+    }
+
+    /* ── Section divider label ── */
+    .section-label {
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 18px 0 4px;
+      grid-column: 1 / -1;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,33 +200,48 @@
 
   <section class="gallery">
 
-    <!-- 1. BLUEBERRY IMAGE -->
+    <!-- ══ 3D WORK ══ -->
+    <div class="section-label">3D Work</div>
+
+    <!-- 1. BLUEBERRY IMAGE — side by side, add more images here -->
     <div class="art-piece">
-      <img src="images/blueb.jpg" onclick="openViewer(this.src)">
+      <div class="side-by-side">
+        <img src="images/blueb.jpg" onclick="openViewer(this.src)">
+        <img src="images/berryF2.jpg" onclick="openViewer(this.src)">
+      </div>
       <div class="description">
-        <h2>Blueberrys</h2>
+        <h2>Blueberry in Water Scene — Maya</h2>
+        <p class="subdesc">A still-life environment created in Autodesk Maya, focused on realistic materials, lighting, and fluid presentation. This piece explores surface detail, transparency, and composition through a simple organic subject.</p>
       </div>
     </div>
 
-    <!-- 2. BLUEBERRY GLB -->
-    <div class="art-piece vertical-layout">
-      <div class="model-wrap">
-        <model-viewer src="images/Berry.glb" camera-controls auto-rotate></model-viewer>
-      </div>
-      <div class="description centered">
-        <h2>Blueberry Model</h2>
-      </div>
-    </div>
-
-    <!-- 3. TAVERN -->
+    <!-- 3. BOOKSHELF — side by side, add more images here -->
     <div class="art-piece">
-      <img src="images/bookshelf1.jpg" onclick="openViewer(this.src)">
+      <div class="side-by-side">
+        <img src="images/bookshelf1.jpg" onclick="openViewer(this.src)">
+        <img src="images/Library.jpg" onclick="openViewer(this.src)">
+      </div>
       <div class="description">
-        <h2>Tavern Bookshelf</h2>
+        <h2>Bookshelf Scene — Maya</h2>
+        <p class="subdesc">An interior scene built in Autodesk Maya featuring a large bookshelf and lit candles. This project focuses on environmental storytelling, warm lighting, and arranging detailed props to create atmosphere.</p>
       </div>
     </div>
 
-    <!-- 4. BEES -->
+    <!-- 4. SIMPSONS -->
+    <div class="art-piece">
+      <div class="image-grid">
+        <img src="images/Art2.jpg" onclick="openViewer(this.src)">
+        <img src="images/Art22.jpg" onclick="openViewer(this.src)">
+        <img src="images/art222.jpg" onclick="openViewer(this.src)">
+        <img src="images/art2222.jpg" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Simpsons AI Toon Render</h2>
+        <p class="subdesc">A stylized toon-rendered scene inspired by The Simpsons, created with an AI-assisted visual approach. This piece experiments with exaggerated color, cartoon rendering, and environmental mood.</p>
+      </div>
+    </div>
+
+ <!-- 4. BEES -->
     <div class="art-piece">
       <div class="art-eight-layout">
         <div class="art-eight-main">
@@ -64,79 +253,133 @@
         </div>
       </div>
       <div class="description">
-        <h2>buzz..!</h2>
-        <p>Bee Hexes</p>
+        <h2>Bee Hive Study — Toon Shader Pipeline</h2>
+        <p class="subdesc">This render explores stylized AI toon shading in Autodesk Maya, featuring a bee resting within a honeycomb structure. The project includes process breakdowns, comparing initial lighting and texture passes with the final rendered output.</p>
       </div>
     </div>
 
-    <!-- 5. SIMPSONS -->
-    <div class="art-piece">
-      <div class="image-grid">
-        <img src="images/Art2.jpg" onclick="openViewer(this.src)">
-        <img src="images/Art22.jpg" onclick="openViewer(this.src)">
-        <img src="images/art222.jpg" onclick="openViewer(this.src)">
-        <img src="images/art2222.jpg" onclick="openViewer(this.src)">
-      </div>
-      <div class="description">
-        <h2>Simpsons recreation</h2>
-      </div>
-    </div>
-
-    <!-- 6. PIZZA GLB -->
+    <!-- 5. PIZZA GLB -->
     <div class="art-piece vertical-layout">
       <div class="model-wrap">
         <model-viewer src="images/Pizza.glb" camera-controls auto-rotate></model-viewer>
       </div>
       <div class="description centered">
-        <h2>Pizza Model</h2>
+        <h2>Pizza GLB Model</h2>
+        <p class="subdesc">A pizza prop modeled and exported as a GLB, designed for real-time viewing and asset presentation. This piece focuses on stylized food design, appealing shape language, and readable texture work.</p>
       </div>
     </div>
 
-    <!-- 7. STEAK GLB -->
+    <!-- 6. STEAK GLB -->
     <div class="art-piece vertical-layout">
       <div class="model-wrap">
         <model-viewer src="images/Steak.glb" camera-controls auto-rotate></model-viewer>
       </div>
       <div class="description centered">
-        <h2>Steak Model</h2>
+        <h2>Steak GLB Model</h2>
+        <p class="subdesc">A standalone steak asset exported as a GLB for real-time use. This model highlights food sculpting, texture detail, and presentation as an individual game-ready prop.</p>
       </div>
     </div>
 
-    <!-- 8. MISC -->
-    <div class="art-piece">
+    <!-- 7. MISC — single combined gallery -->
+    <div class="art-piece misc-card" onclick="openGallery('Miscellaneous Prop Renders', miscImages)">
       <div class="image-grid">
-        <img src="images/group1.png" onclick="openViewer(this.src)">
-        <img src="images/group11.png" onclick="openViewer(this.src)">
-        <img src="images/group1111.png" onclick="openViewer(this.src)">
-        <img src="images/group1111111.png" onclick="openViewer(this.src)">
+        <img src="images/group1.png">
+        <img src="images/group11.png">
+        <img src="images/group1111.png">
+        <img src="images/group1111111.png">
       </div>
       <div class="description">
-        <h2>Misc.</h2>
+        <h2>Miscellaneous Prop Renders</h2>
+        <p class="subdesc">A collection of standalone prop renders including a butcher knife, cheese, bone marrow, salami, candle, wine bottle, and knife block. These studies focus on material definition, object variety, and individual prop presentation.</p>
       </div>
     </div>
 
-    <!-- 9. MISC 2 -->
+    <!-- ══ 2D ILLUSTRATION ══ -->
+    <div class="section-label">2D Illustration</div>
+
+    <!-- OC SKETCHES -->
     <div class="art-piece">
-      <div class="image-grid">
-        <img src="images/group11111.png" onclick="openViewer(this.src)">
-        <img src="images/group11111111.png" onclick="openViewer(this.src)">
-        <img src="images/group111111.png" onclick="openViewer(this.src)">
-        <img src="images/group111.png" onclick="openViewer(this.src)">
+      <div class="side-by-side">
+        <!-- ADD OC SKETCH IMAGES: replace src values -->
+        <img src="images/OC1s2.png" onclick="openViewer(this.src)">
+        <img src="images/OC1S.png" onclick="openViewer(this.src)">
+        <img src="images/OCs3.png" onclick="openViewer(this.src)">
+        <img src="images/OCs4.png" onclick="openViewer(this.src)">
+
+        <!-- Add more if needed -->
       </div>
       <div class="description">
-        <h2>misc.</h2>
+        <h2>Original Character Illustrations — Sketches</h2>
+        <p class="subdesc">A series of hand-drawn original character sketches that explore character design, expression, and visual storytelling. These pieces reflect my interest in personality-driven illustration and stylized anatomy.</p>
       </div>
     </div>
 
-    <!-- 10. DEMON FEMALE -->
+    <!-- OC FINALS -->
+    <div class="art-piece">
+      <div class="side-by-side">
+        <!-- ADD OC FINAL IMAGES: replace src values -->
+        <img src="images/OC1F.png" onclick="openViewer(this.src)">
+
+        <!-- Add more if needed -->
+      </div>
+      <div class="description">
+        <h2>Original Character Illustrations — Finals</h2>
+        <p class="subdesc">Finished versions of original character artworks, refined from initial sketches. These pieces reflect my interest in personality-driven illustration and stylized anatomy.</p>
+      </div>
+    </div>
+
+    <!-- MIRIO -->
+    <div class="art-piece">
+      <div class="side-by-side">
+        <!-- ADD MIRIO IMAGES: replace src values -->
+        <img src="images/miri1.png" onclick="openViewer(this.src)">
+        <img src="images/miri F.jpg" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Mirio Togata Fan Art</h2>
+        <p class="subdesc">A hand-drawn illustration of Mirio Togata that focuses on character likeness, pose, and expressive linework. This piece was created as fan art practice while refining anatomy and stylization.</p>
+      </div>
+    </div>
+
+    <!-- EREN -->
+    <div class="art-piece">
+      <div class="side-by-side">
+        <!-- ADD EREN IMAGES: replace src values -->
+        <img src="images/eren1.png" onclick="openViewer(this.src)">
+        <img src="images/erenF.png" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Eren Yeager Fan Art</h2>
+        <p class="subdesc">A hand-drawn fan art piece of Eren Yeager exploring dramatic character presentation and stylized anatomy. This work focuses on recognizable features, pose, and mood.</p>
+      </div>
+    </div>
+
+    <!-- ADRIAN CHASE -->
+    <div class="art-piece">
+      <div class="side-by-side">
+        <!-- ADD ADRIAN IMAGES: replace src values -->
+        <img src="images/adrian1.png" onclick="openViewer(this.src)">
+        <img src="images/adrianF.PNG" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Adrian Chase Fan Art</h2>
+        <p class="subdesc">A character illustration based on Adrian Chase, emphasizing attitude, likeness, and composition. This drawing reflects my interest in expressive fan art and character-focused visual storytelling.</p>
+      </div>
+    </div>
+
+    <!-- ══ PIXEL ART / ANIMATION ══ -->
+    <div class="section-label">Pixel Art / Animation</div>
+
+   
+    <!-- DEMON FEMALE -->
     <div class="art-piece">
       <div class="dual-images">
         <img src="images/art1.gif" onclick="openViewer(this.src)">
         <img src="images/art11.gif" onclick="openViewer(this.src)">
       </div>
       <div class="description">
-        <h2>Demon female</h2>
-        <p>shapeshifter</p>
+        <h2>Demon Transformation Animation</h2>
+        <p class="subdesc">A pixel art animation of a girl transforming into a demon. This piece focuses on frame-by-frame motion, visual effects, and character transformation through stylized pixel work.</p>
       </div>
     </div>
 
@@ -147,21 +390,34 @@
     <a href="contact.html" class="contact-btn">Contact</a>
   </footer>
 
-  <!-- FULLSCREEN VIEWER -->
+  <!-- FULLSCREEN SINGLE IMAGE VIEWER -->
   <div id="viewer" onclick="closeViewer(event)">
     <button id="viewer-close">&times;</button>
     <img id="viewer-img">
   </div>
 
+  <!-- GALLERY LIGHTBOX -->
+  <div id="gallery-overlay">
+    <div id="gallery-header">
+      <span id="gallery-title">Gallery</span>
+      <button id="gallery-close" onclick="closeGallery()">&times;</button>
+    </div>
+    <div id="gallery-main">
+      <button class="gallery-arrow" id="gallery-prev" onclick="galleryNav(-1)">&#8592;</button>
+      <img id="gallery-big" src="" alt="">
+      <button class="gallery-arrow" id="gallery-next" onclick="galleryNav(1)">&#8594;</button>
+    </div>
+    <div id="gallery-counter"></div>
+    <div id="gallery-thumbs"></div>
+  </div>
+
   <script>
+    /* ── Single image viewer ── */
     function openViewer(src) {
-      const viewer = document.getElementById("viewer");
-      const img = document.getElementById("viewer-img");
-      img.src = src;
-      viewer.classList.add("show");
+      document.getElementById("viewer-img").src = src;
+      document.getElementById("viewer").classList.add("show");
       document.body.classList.add("viewer-open");
     }
-
     function closeViewer(e) {
       if (e.target.id === "viewer" || e.target.id === "viewer-close") {
         document.getElementById("viewer").classList.remove("show");
@@ -169,11 +425,82 @@
       }
     }
 
-    document.addEventListener("keydown", function (e) {
+    /* ── All misc images in one gallery ── */
+    const miscImages = [
+      "images/group1.png",
+      "images/group11.png",
+      "images/group1111.png",
+      "images/group1111111.png",
+      "images/group11111.png",
+      "images/group11111111.png",
+      "images/group111111.png",
+      "images/group111.png"
+    ];
+
+    let galleryImages = [];
+    let galleryIndex  = 0;
+
+    function openGallery(title, images) {
+      galleryImages = images;
+      galleryIndex  = 0;
+      document.getElementById("gallery-title").textContent = title;
+      buildThumbs();
+      showGalleryImage(0);
+      document.getElementById("gallery-overlay").classList.add("show");
+      document.body.classList.add("viewer-open");
+    }
+
+    function closeGallery() {
+      document.getElementById("gallery-overlay").classList.remove("show");
+      document.body.classList.remove("viewer-open");
+    }
+
+    function buildThumbs() {
+      const strip = document.getElementById("gallery-thumbs");
+      strip.innerHTML = "";
+      galleryImages.forEach((src, i) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.onclick = () => showGalleryImage(i);
+        strip.appendChild(img);
+      });
+    }
+
+    function showGalleryImage(idx) {
+      galleryIndex = (idx + galleryImages.length) % galleryImages.length;
+      document.getElementById("gallery-big").src = galleryImages[galleryIndex];
+      document.getElementById("gallery-counter").textContent =
+        (galleryIndex + 1) + " / " + galleryImages.length;
+      document.querySelectorAll("#gallery-thumbs img").forEach((el, i) => {
+        el.classList.toggle("active", i === galleryIndex);
+      });
+      const active = document.querySelector("#gallery-thumbs img.active");
+      if (active) active.scrollIntoView({ inline: "center", behavior: "smooth" });
+    }
+
+    function galleryNav(dir) {
+      showGalleryImage(galleryIndex + dir);
+    }
+
+    /* ── Keyboard controls ── */
+    document.addEventListener("keydown", function(e) {
+      const galleryOpen = document.getElementById("gallery-overlay").classList.contains("show");
+      const viewerOpen  = document.getElementById("viewer").classList.contains("show");
       if (e.key === "Escape") {
-        document.getElementById("viewer").classList.remove("show");
-        document.body.classList.remove("viewer-open");
+        if (galleryOpen) closeGallery();
+        if (viewerOpen) {
+          document.getElementById("viewer").classList.remove("show");
+          document.body.classList.remove("viewer-open");
+        }
       }
+      if (galleryOpen) {
+        if (e.key === "ArrowLeft")  galleryNav(-1);
+        if (e.key === "ArrowRight") galleryNav(1);
+      }
+    });
+
+    document.getElementById("gallery-overlay").addEventListener("click", function(e) {
+      if (e.target === this) closeGallery();
     });
   </script>
 
