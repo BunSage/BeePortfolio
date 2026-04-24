@@ -194,7 +194,7 @@
   <div class="bee bee6">🐝</div>
 
   <header>
-    <h1>Bee's Portfolio</h1>
+    <h1>Breanna Michel's Portfolio</h1>
     <p>Bee Creative 🐝</p>
   </header>
 
@@ -203,7 +203,7 @@
     <!-- ══ 3D WORK ══ -->
     <div class="section-label">3D Work</div>
 
-    <!-- 1. BLUEBERRY IMAGE — side by side, add more images here -->
+    <!-- 1. BLUEBERRY IMAGE -->
     <div class="art-piece">
       <div class="side-by-side">
         <img src="images/blueb.jpg" onclick="openViewer(this.src)">
@@ -215,7 +215,7 @@
       </div>
     </div>
 
-    <!-- 3. BOOKSHELF — side by side, add more images here -->
+    <!-- 2. BOOKSHELF -->
     <div class="art-piece">
       <div class="side-by-side">
         <img src="images/bookshelf1.jpg" onclick="openViewer(this.src)">
@@ -224,6 +224,19 @@
       <div class="description">
         <h2>Bookshelf Scene — Maya</h2>
         <p class="subdesc">An interior scene built in Autodesk Maya featuring a large bookshelf and lit candles. This project focuses on environmental storytelling, warm lighting, and arranging detailed props to create atmosphere.</p>
+      </div>
+    </div>
+
+    <!-- 3. MEAT SCENE — NEW -->
+    <div class="art-piece">
+      <div class="side-by-side">
+        <!-- ADD MEAT SCENE IMAGES: replace src values -->
+        <img src="images/Meatwip.png" onclick="openViewer(this.src)">
+        <img src="images/meat.jpg" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Meat Scene — Maya</h2>
+        <p class="subdesc">A 3D scene created in Autodesk Maya centered around a meat-focused composition with attention to lighting, materials, and presentation. This piece explores food modeling, texture detail, and scene arrangement to create a strong visual impact.</p>
       </div>
     </div>
 
@@ -241,7 +254,7 @@
       </div>
     </div>
 
- <!-- 4. BEES -->
+    <!-- 5. BEES -->
     <div class="art-piece">
       <div class="art-eight-layout">
         <div class="art-eight-main">
@@ -258,7 +271,7 @@
       </div>
     </div>
 
-    <!-- 5. PIZZA GLB -->
+    <!-- 6. PIZZA GLB -->
     <div class="art-piece vertical-layout">
       <div class="model-wrap">
         <model-viewer src="images/Pizza.glb" camera-controls auto-rotate></model-viewer>
@@ -269,7 +282,7 @@
       </div>
     </div>
 
-    <!-- 6. STEAK GLB -->
+    <!-- 7. STEAK GLB -->
     <div class="art-piece vertical-layout">
       <div class="model-wrap">
         <model-viewer src="images/Steak.glb" camera-controls auto-rotate></model-viewer>
@@ -280,7 +293,7 @@
       </div>
     </div>
 
-    <!-- 7. MISC — single combined gallery -->
+    <!-- 8. MISC — single combined gallery -->
     <div class="art-piece misc-card" onclick="openGallery('Miscellaneous Prop Renders', miscImages)">
       <div class="image-grid">
         <img src="images/group1.png">
@@ -300,13 +313,10 @@
     <!-- OC SKETCHES -->
     <div class="art-piece">
       <div class="side-by-side">
-        <!-- ADD OC SKETCH IMAGES: replace src values -->
         <img src="images/OC1s2.png" onclick="openViewer(this.src)">
         <img src="images/OC1S.png" onclick="openViewer(this.src)">
         <img src="images/OCs3.png" onclick="openViewer(this.src)">
         <img src="images/OCs4.png" onclick="openViewer(this.src)">
-
-        <!-- Add more if needed -->
       </div>
       <div class="description">
         <h2>Original Character Illustrations — Sketches</h2>
@@ -317,10 +327,7 @@
     <!-- OC FINALS -->
     <div class="art-piece">
       <div class="side-by-side">
-        <!-- ADD OC FINAL IMAGES: replace src values -->
         <img src="images/OC1F.png" onclick="openViewer(this.src)">
-
-        <!-- Add more if needed -->
       </div>
       <div class="description">
         <h2>Original Character Illustrations — Finals</h2>
@@ -331,7 +338,6 @@
     <!-- MIRIO -->
     <div class="art-piece">
       <div class="side-by-side">
-        <!-- ADD MIRIO IMAGES: replace src values -->
         <img src="images/miri1.png" onclick="openViewer(this.src)">
         <img src="images/miri F.jpg" onclick="openViewer(this.src)">
       </div>
@@ -344,7 +350,6 @@
     <!-- EREN -->
     <div class="art-piece">
       <div class="side-by-side">
-        <!-- ADD EREN IMAGES: replace src values -->
         <img src="images/eren1.png" onclick="openViewer(this.src)">
         <img src="images/erenF.png" onclick="openViewer(this.src)">
       </div>
@@ -357,7 +362,6 @@
     <!-- ADRIAN CHASE -->
     <div class="art-piece">
       <div class="side-by-side">
-        <!-- ADD ADRIAN IMAGES: replace src values -->
         <img src="images/adrian1.png" onclick="openViewer(this.src)">
         <img src="images/adrianF.PNG" onclick="openViewer(this.src)">
       </div>
@@ -367,10 +371,22 @@
       </div>
     </div>
 
+    <!-- ASTARION — NEW -->
+    <div class="art-piece">
+      <div class="side-by-side">
+        <!-- ADD ASTARION IMAGES: replace src values -->
+        <img src="images/astation1.jpg" onclick="openViewer(this.src)">
+        <img src="images/astarionF.jpg" onclick="openViewer(this.src)">
+      </div>
+      <div class="description">
+        <h2>Astarion Fan Art</h2>
+        <p class="subdesc">A hand-drawn fan art piece of Astarion focused on character likeness, expression, and mood. This illustration explores stylized portrait work and dramatic presentation inspired by fantasy character design.</p>
+      </div>
+    </div>
+
     <!-- ══ PIXEL ART / ANIMATION ══ -->
     <div class="section-label">Pixel Art / Animation</div>
 
-   
     <!-- DEMON FEMALE -->
     <div class="art-piece">
       <div class="dual-images">
@@ -403,106 +419,4 @@
       <button id="gallery-close" onclick="closeGallery()">&times;</button>
     </div>
     <div id="gallery-main">
-      <button class="gallery-arrow" id="gallery-prev" onclick="galleryNav(-1)">&#8592;</button>
-      <img id="gallery-big" src="" alt="">
-      <button class="gallery-arrow" id="gallery-next" onclick="galleryNav(1)">&#8594;</button>
-    </div>
-    <div id="gallery-counter"></div>
-    <div id="gallery-thumbs"></div>
-  </div>
-
-  <script>
-    /* ── Single image viewer ── */
-    function openViewer(src) {
-      document.getElementById("viewer-img").src = src;
-      document.getElementById("viewer").classList.add("show");
-      document.body.classList.add("viewer-open");
-    }
-    function closeViewer(e) {
-      if (e.target.id === "viewer" || e.target.id === "viewer-close") {
-        document.getElementById("viewer").classList.remove("show");
-        document.body.classList.remove("viewer-open");
-      }
-    }
-
-    /* ── All misc images in one gallery ── */
-    const miscImages = [
-      "images/group1.png",
-      "images/group11.png",
-      "images/group1111.png",
-      "images/group1111111.png",
-      "images/group11111.png",
-      "images/group11111111.png",
-      "images/group111111.png",
-      "images/group111.png"
-    ];
-
-    let galleryImages = [];
-    let galleryIndex  = 0;
-
-    function openGallery(title, images) {
-      galleryImages = images;
-      galleryIndex  = 0;
-      document.getElementById("gallery-title").textContent = title;
-      buildThumbs();
-      showGalleryImage(0);
-      document.getElementById("gallery-overlay").classList.add("show");
-      document.body.classList.add("viewer-open");
-    }
-
-    function closeGallery() {
-      document.getElementById("gallery-overlay").classList.remove("show");
-      document.body.classList.remove("viewer-open");
-    }
-
-    function buildThumbs() {
-      const strip = document.getElementById("gallery-thumbs");
-      strip.innerHTML = "";
-      galleryImages.forEach((src, i) => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.onclick = () => showGalleryImage(i);
-        strip.appendChild(img);
-      });
-    }
-
-    function showGalleryImage(idx) {
-      galleryIndex = (idx + galleryImages.length) % galleryImages.length;
-      document.getElementById("gallery-big").src = galleryImages[galleryIndex];
-      document.getElementById("gallery-counter").textContent =
-        (galleryIndex + 1) + " / " + galleryImages.length;
-      document.querySelectorAll("#gallery-thumbs img").forEach((el, i) => {
-        el.classList.toggle("active", i === galleryIndex);
-      });
-      const active = document.querySelector("#gallery-thumbs img.active");
-      if (active) active.scrollIntoView({ inline: "center", behavior: "smooth" });
-    }
-
-    function galleryNav(dir) {
-      showGalleryImage(galleryIndex + dir);
-    }
-
-    /* ── Keyboard controls ── */
-    document.addEventListener("keydown", function(e) {
-      const galleryOpen = document.getElementById("gallery-overlay").classList.contains("show");
-      const viewerOpen  = document.getElementById("viewer").classList.contains("show");
-      if (e.key === "Escape") {
-        if (galleryOpen) closeGallery();
-        if (viewerOpen) {
-          document.getElementById("viewer").classList.remove("show");
-          document.body.classList.remove("viewer-open");
-        }
-      }
-      if (galleryOpen) {
-        if (e.key === "ArrowLeft")  galleryNav(-1);
-        if (e.key === "ArrowRight") galleryNav(1);
-      }
-    });
-
-    document.getElementById("gallery-overlay").addEventListener("click", function(e) {
-      if (e.target === this) closeGallery();
-    });
-  </script>
-
-</body>
-</html>
+      <button class="gallery-arrow" id="gallery-prev" onclick="galleryNa
