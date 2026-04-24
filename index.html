@@ -10,12 +10,32 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
+    /* ── Force clicks to work ── */
+    .art-piece,
+    .art-piece img,
+    .side-by-side img,
+    .dual-images img,
+    .art-eight-layout img,
+    .image-grid img {
+      pointer-events: auto !important;
+      cursor: pointer;
+    }
+    .misc-card {
+      pointer-events: auto !important;
+      cursor: pointer;
+    }
+    /* The grid images inside misc-card should NOT catch clicks (the card does) */
+    .misc-card .image-grid img,
+    .misc-card .image-grid {
+      pointer-events: none !important;
+    }
+
     /* ── Gallery Lightbox ── */
     #gallery-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      z-index: 1000;
+      z-index: 9999;
       background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(6px);
       flex-direction: column;
@@ -49,6 +69,7 @@
       cursor: pointer;
       line-height: 1;
       transition: border-color 0.2s, background 0.2s;
+      pointer-events: auto !important;
     }
     #gallery-close:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
 
@@ -68,6 +89,8 @@
       object-fit: contain;
       border-radius: 8px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      pointer-events: none;
+      cursor: default;
     }
     .gallery-arrow {
       background: rgba(255,255,255,0.1);
@@ -84,6 +107,7 @@
       justify-content: center;
       transition: background 0.2s;
       user-select: none;
+      pointer-events: auto !important;
     }
     .gallery-arrow:hover { background: rgba(255,255,255,0.25); }
 
@@ -109,18 +133,56 @@
       height: 64px;
       object-fit: cover;
       border-radius: 6px;
-      cursor: pointer;
+      cursor: pointer !important;
       opacity: 0.5;
       border: 2px solid transparent;
       flex-shrink: 0;
       transition: opacity 0.2s, border-color 0.2s;
+      pointer-events: auto !important;
     }
     #gallery-thumbs img.active,
     #gallery-thumbs img:hover { opacity: 1; border-color: #fff; }
 
-    /* ── Clickable gallery card overlay ── */
-    .misc-card {
+    /* ── Single image fullscreen viewer ── */
+    #viewer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      pointer-events: auto !important;
+    }
+    #viewer.show { display: flex; }
+    #viewer-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      pointer-events: none;
+    }
+    #viewer-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: none;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       cursor: pointer;
+      line-height: 1;
+      pointer-events: auto !important;
+    }
+    #viewer-close:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── Clickable gallery card hover overlay ── */
+    .misc-card {
       position: relative;
     }
     .misc-card::after {
@@ -140,7 +202,6 @@
       pointer-events: none;
     }
     .misc-card:hover::after { opacity: 1; }
-    .misc-card .image-grid { pointer-events: none; }
 
     /* ── Side-by-side image layout ── */
     .side-by-side {
@@ -151,11 +212,11 @@
     .side-by-side img {
       flex: 1;
       min-width: 0;
-      width: 50%;
       height: auto;
       object-fit: cover;
       border-radius: 6px;
-      cursor: pointer;
+      cursor: pointer !important;
+      pointer-events: auto !important;
     }
 
     /* ── Rich description: header + subtext ── */
@@ -227,10 +288,9 @@
       </div>
     </div>
 
-    <!-- 3. MEAT SCENE — NEW -->
+    <!-- 3. MEAT SCENE -->
     <div class="art-piece">
       <div class="side-by-side">
-        <!-- ADD MEAT SCENE IMAGES: replace src values -->
         <img src="images/Meatwip.png" onclick="openViewer(this.src)">
         <img src="images/meat.jpg" onclick="openViewer(this.src)">
       </div>
@@ -371,10 +431,9 @@
       </div>
     </div>
 
-    <!-- ASTARION — NEW -->
+    <!-- ASTARION -->
     <div class="art-piece">
       <div class="side-by-side">
-        <!-- ADD ASTARION IMAGES: replace src values -->
         <img src="images/astation1.jpg" onclick="openViewer(this.src)">
         <img src="images/astarionF.jpg" onclick="openViewer(this.src)">
       </div>
@@ -408,7 +467,7 @@
 
   <!-- FULLSCREEN SINGLE IMAGE VIEWER -->
   <div id="viewer" onclick="closeViewer(event)">
-    <button id="viewer-close">&times;</button>
+    <button id="viewer-close" onclick="closeViewer(event)">&times;</button>
     <img id="viewer-img">
   </div>
 
@@ -419,4 +478,110 @@
       <button id="gallery-close" onclick="closeGallery()">&times;</button>
     </div>
     <div id="gallery-main">
-      <button class="gallery-arrow" id="gallery-prev" onclick="galleryNa
+      <button class="gallery-arrow" id="gallery-prev" onclick="galleryNav(-1)">&#8592;</button>
+      <img id="gallery-big" src="" alt="">
+      <button class="gallery-arrow" id="gallery-next" onclick="galleryNav(1)">&#8594;</button>
+    </div>
+    <div id="gallery-counter"></div>
+    <div id="gallery-thumbs"></div>
+  </div>
+
+  <script>
+    /* ── Single image viewer ── */
+    function openViewer(src) {
+      document.getElementById("viewer-img").src = src;
+      document.getElementById("viewer").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeViewer(e) {
+      if (
+        e.target.id === "viewer" ||
+        e.target.id === "viewer-close" ||
+        e.currentTarget.id === "viewer-close"
+      ) {
+        document.getElementById("viewer").classList.remove("show");
+        document.body.style.overflow = "";
+      }
+    }
+
+    /* ── All misc images in one gallery ── */
+    const miscImages = [
+      "images/group1.png",
+      "images/group11.png",
+      "images/group1111.png",
+      "images/group1111111.png",
+      "images/group11111.png",
+      "images/group11111111.png",
+      "images/group111111.png",
+      "images/group111.png"
+    ];
+
+    let galleryImages = [];
+    let galleryIndex  = 0;
+
+    function openGallery(title, images) {
+      galleryImages = images;
+      galleryIndex  = 0;
+      document.getElementById("gallery-title").textContent = title;
+      buildThumbs();
+      showGalleryImage(0);
+      document.getElementById("gallery-overlay").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeGallery() {
+      document.getElementById("gallery-overlay").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function buildThumbs() {
+      const strip = document.getElementById("gallery-thumbs");
+      strip.innerHTML = "";
+      galleryImages.forEach((src, i) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.onclick = () => showGalleryImage(i);
+        strip.appendChild(img);
+      });
+    }
+
+    function showGalleryImage(idx) {
+      galleryIndex = (idx + galleryImages.length) % galleryImages.length;
+      document.getElementById("gallery-big").src = galleryImages[galleryIndex];
+      document.getElementById("gallery-counter").textContent =
+        (galleryIndex + 1) + " / " + galleryImages.length;
+      document.querySelectorAll("#gallery-thumbs img").forEach((el, i) => {
+        el.classList.toggle("active", i === galleryIndex);
+      });
+      const active = document.querySelector("#gallery-thumbs img.active");
+      if (active) active.scrollIntoView({ inline: "center", behavior: "smooth" });
+    }
+
+    function galleryNav(dir) {
+      showGalleryImage(galleryIndex + dir);
+    }
+
+    /* ── Keyboard controls ── */
+    document.addEventListener("keydown", function(e) {
+      const galleryOpen = document.getElementById("gallery-overlay").classList.contains("show");
+      const viewerOpen  = document.getElementById("viewer").classList.contains("show");
+      if (e.key === "Escape") {
+        if (galleryOpen) closeGallery();
+        if (viewerOpen) {
+          document.getElementById("viewer").classList.remove("show");
+          document.body.style.overflow = "";
+        }
+      }
+      if (galleryOpen) {
+        if (e.key === "ArrowLeft")  galleryNav(-1);
+        if (e.key === "ArrowRight") galleryNav(1);
+      }
+    });
+
+    document.getElementById("gallery-overlay").addEventListener("click", function(e) {
+      if (e.target === this) closeGallery();
+    });
+  </script>
+
+</body>
+</html>
